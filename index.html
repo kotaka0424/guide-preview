@@ -7739,5 +7739,144 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <!-- ============================ フッター ここまで ============================ -->
+<style>
+/* ===== 新・追従CTA（スマホ版） ===== */
+.sp_cta { display: none; }
+@media (max-width: 767px) {
+  ul.bnr_web_yoyaku { display: none !important; }  /* 現行CTAをSPで停止 */
+  body { padding-bottom: 92px; }
+  .sp_cta {
+    display: block;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 99999;
+    width: 100%;
+    font-family: 'M PLUS 1p', sans-serif;
+    padding-bottom: env(safe-area-inset-bottom);
+    background: #fff;
+    box-shadow: 0 -2px 10px rgba(89, 87, 87, 0.18);
+  }
+  .sp_cta ul { display: flex; list-style: none; margin: 0; padding: 0; }
+  .sp_cta li { width: 25%; margin: 0; }
+  .sp_cta a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-decoration: none;
+    height: 100%;
+  }
+  .sp_cta .sp_cta_icon { font-size: 17px; line-height: 1; margin-bottom: 4px; }
+  .sp_cta .sp_cta_label {
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .sp_cta_c { overflow: visible; background: transparent; box-shadow: none; }
+  .sp_cta_c ul { box-shadow: 0 -2px 10px rgba(89,87,87,0.18); margin-top: 11px; }
+  .sp_cta_c li { border-left: 2px solid #fff; }
+  .sp_cta_c li:first-child { border-left: none; }
+  /* 縦の配分: 13 + 27 + 2 + 30 + 2 = 74px（ラベル下の余白を5px→2pxに詰めた分だけ低く） */
+  .sp_cta_c a { position: relative; padding: 13px 2px 2px; color: #fff; }
+  /* アイコンは共通の固定高ボックス内で上下中央配置 → 4ボタンの中心線が揃う */
+  .sp_cta_c .sp_cta_icon {
+    height: 27px;
+    font-size: 24px;  /* カウンセリング予約(fa-comments)は現状維持 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2px;
+  }
+  .sp_cta_c .cta_saishin .sp_cta_icon,
+  .sp_cta_c .cta_line .sp_cta_icon { font-size: 27px; }
+  .sp_cta_c .sp_cta_icon_svg { height: 29px; width: auto; display: block; }
+  /* ラベルは2行分の固定高で上下中央揃え（1行/2行が混在しても揃う） */
+  .sp_cta_c .sp_cta_label {
+    font-size: 13px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sp_cta_c .cta_biyo .sp_cta_label { font-size: 11px; }
+  .sp_cta_c .sp_cta_tag {
+    position: absolute;
+    top: -11px; left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: #fff;
+    font-size: 9.5px;
+    font-weight: 500;
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: 999px;
+    border: 1px solid;  /* 枠線色は各ボタン色(color)を継承 */
+    box-shadow: 0 1px 3px rgba(89,87,87,0.25);
+  }
+  .sp_cta_c .cta_shoshin { background: #EA5560; --cta-bg: #EA5560; }
+  .sp_cta_c .cta_shoshin .sp_cta_tag { color: #EA5560; }
+  .sp_cta_c .cta_saishin { background: #00AECC; --cta-bg: #00AECC; }
+  .sp_cta_c .cta_saishin .sp_cta_tag { color: #00AECC; }
+  .sp_cta_c .cta_biyo { background: #F0A22E; --cta-bg: #F0A22E; }
+  .sp_cta_c .cta_biyo .sp_cta_tag { color: #F0A22E; }
+  .sp_cta_c .cta_line { background: #06C755; --cta-bg: #06C755; }
+  .sp_cta_c .cta_line .sp_cta_tag { color: #06A94D; border-color: #06C755; }
+}
+
+@media (max-width: 767px) {
+  /* カプセル内テキストは白地で読めるよう一段濃い同系色に。枠線はボタン色のまま */
+  .sp_cta_c .cta_shoshin .sp_cta_tag { color: #D6404C; border-color: #EA5560; }
+  .sp_cta_c .cta_saishin .sp_cta_tag { color: #0090B0; border-color: #00AECC; }
+  .sp_cta_c .cta_biyo .sp_cta_tag { color: #D98A10; border-color: #F0A22E; }
+}
+</style>
+
+<div class="sp_cta sp_cta_c">
+  <ul>
+    <li class="cta_shoshin"><a href="https://ebinahifu.mdja.jp/index.php?del2=1&amp;gid=3" target="_blank" rel="noopener"><span class="sp_cta_tag">初めての方のみ</span><span class="sp_cta_icon"><svg class="sp_cta_icon_svg" viewBox="0 0 26 26" aria-hidden="true" focusable="false"><rect x="1.5" y="4" width="19" height="18" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="1.5" y1="9.5" x2="20.5" y2="9.5" stroke="currentColor" stroke-width="2"/><line x1="6.5" y1="1.5" x2="6.5" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="15.5" y1="1.5" x2="15.5" y2="6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="19.5" cy="19.5" r="6.5" fill="var(--cta-bg, #333)"/><circle cx="19.5" cy="19.5" r="5" fill="none" stroke="currentColor" stroke-width="1.8"/><polyline points="19.5,16.9 19.5,19.5 21.5,20.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="sp_cta_label">新患時間予約</span></a></li>
+    <li class="cta_saishin"><a href="https://ebinahifu.mdja.jp/" target="_blank" rel="noopener"><span class="sp_cta_tag">受診歴のある方</span><i class="fas fa-laptop sp_cta_icon"></i><span class="sp_cta_label">Web受付</span></a></li>
+    <li class="cta_biyo"><a href="https://ebinahifu.mdja.jp/g/2" target="_blank" rel="noopener"><span class="sp_cta_tag">美容皮膚科</span><i class="fas fa-comments sp_cta_icon"></i><span class="sp_cta_label">カウンセリング<br>予約</span></a></li>
+    <li class="cta_line"><a href="https://liff.line.me/2009055423-gTRT6NAn/landing?follow=%40577oibpi&lp=JVPaRu&liff_id=2009055423-gTRT6NAn" target="_blank" rel="noopener"><span class="sp_cta_tag">最新・お得情報</span><i class="fab fa-line sp_cta_icon"></i><span class="sp_cta_label">LINE登録</span></a></li>
+  </ul>
+</div>
+
+<style>
+/* ===== PC案3: 右下追従スタック ===== */
+@media (min-width: 768px) {
+  ul.bnr_web_yoyaku { display: none !important; }
+  .pc_cta3 { position: fixed; right: 16px; bottom: 16px; z-index: 99999; display: flex; flex-direction: column; gap: 8px; width: 11.5em; font-family: 'M PLUS 1p', sans-serif; opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .pc_cta3 a { display: block; border-radius: 8px; color: #fff; text-align: center; padding: 7px 6px 8px; box-shadow: 1px 1px 3px #666; border: 1px solid #fff; text-decoration: none; line-height: 1.3; }
+  .pc_cta3 .t1 { display: block; font-size: 11px; opacity: .95; }
+  .pc_cta3 .t2 { display: block; font-size: 15px; font-weight: 700; }
+  .pc_cta3 .pcb_shoshin { background: #EA5560; }
+  .pc_cta3 .pcb_saishin { background: #00AECC; }
+  .pc_cta3 .pcb_biyo { background: #F0A22E; }
+  .pc_cta3 .pcb_line { background: #06C755; }
+}
+@media (max-width: 767px) { .pc_cta3 { display: none !important; } }
+</style>
+<div class="pc_cta3">
+<a class="pcb_shoshin" href="https://ebinahifu.mdja.jp/index.php?del2=1&amp;gid=3" target="_blank" rel="noopener"><span class="t1">初めての方のみ</span><span class="t2">新患時間予約</span></a>
+<a class="pcb_saishin" href="https://ebinahifu.mdja.jp/" target="_blank" rel="noopener"><span class="t1">受診歴のある方</span><span class="t2">Web受付</span></a>
+<a class="pcb_biyo" href="https://ebinahifu.mdja.jp/g/2" target="_blank" rel="noopener"><span class="t1">美容皮膚科</span><span class="t2">カウンセリング予約</span></a>
+<a class="pcb_line" href="https://liff.line.me/2009055423-gTRT6NAn/landing?follow=%40577oibpi&lp=JVPaRu&liff_id=2009055423-gTRT6NAn" target="_blank" rel="noopener"><span class="t1">最新・お得情報</span><span class="t2">LINE登録</span></a>
+</div>
+<script>
+(function(){
+  var el = document.querySelector(".pc_cta3");
+  if (!el) return;
+  var update = function(){
+    var on = window.scrollY > 100;
+    el.style.opacity = on ? "1" : "0";
+    el.style.pointerEvents = on ? "auto" : "none";
+  };
+  update();
+  window.addEventListener("scroll", update, {passive: true});
+})();
+</script>
 </body>
 </html>
